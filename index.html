@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无尽弹球 - 点击开始</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 覆盖整个屏幕的点击层 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: 'PixelFont', 'Courier New', monospace;
+            background-color: #0a0e29;
+            color: #00f3ff;
+        }
+
+        #start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 41, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        #start-screen h1 {
+            font-size: 4rem;
+            text-shadow: 4px 4px 0 #0066ff;
+            margin-bottom: 20px;
+        }
+
+        #start-screen p {
+            font-size: 1.5rem;
+            text-shadow: 2px 2px 0 #9900cc;
+        }
+
+        /* 点击提示闪烁动画 */
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.3; }
+        }
+
+        #start-screen p {
+            animation: blink 1s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景层 -->
+    <div class="bg"></div>
+
+    <!-- 装饰元素 -->
+    <div class="decorations">
+        <div class="planet"></div>
+        <div class="spaceship"></div>
+        <div class="ball"></div>
+        <div class="pixel-grid"></div>
+    </div>
+
+    <!-- 全屏点击层 -->
+    <div id="start-screen">
+        <h1>无尽弹球</h1>
+        <p>点击任意位置开始游戏</p>
+    </div>
+
+    <script>
+        const startScreen = document.getElementById('start-screen');
+
+        startScreen.addEventListener('click', () => {
+            window.location.href = "front.html";
+        });
+
+        // 可选：按任意键也触发点击
+        document.addEventListener('keydown', () => {
+            startScreen.click();
+        });
+    </script>
+</body>
+</html>
