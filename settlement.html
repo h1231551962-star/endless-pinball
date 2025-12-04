@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏结束</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="bg"></div>
+
+    <div class="decorations">
+        <div class="planet"></div>
+        <div class="spaceship"></div>
+        <div class="ball"></div>
+        <div class="pixel-grid"></div>
+    </div>
+
+    <audio id="endd" src="end.mp3"></audio>
+
+    <div class="container">
+        <h1 class="title">游戏结束</h1>
+        <p class="subtitle" id="finalScore">模式｜本次得分：0</p>
+
+        <div class="menu">
+            <button class="difficulty-btn easy" onclick="retryGame()">重试[R]</button>
+            <button class="difficulty-btn medium" onclick="goHome()">更改模式[B]</button>
+        </div>
+
+        <div class="footer">
+            <p>抵制不良游戏，拒绝盗版游戏。注意自我保护，预防受骗上当。</p>
+            <p>适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。</p>
+        </div>
+    </div>
+
+    <script>
+
+window.onload = function() {
+    const endd = document.getElementById('endd');
+    endd.currentTime = 0; // 确保从头播放
+    endd.play();
+};
+
+// 取得 URL 参数
+function getParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        score: Number(params.get("score") || 0),
+        difficulty: params.get("difficulty") || "easy"
+    };
+}
+
+// 英文 → 中文映射
+function difficultyToCN(diff) {
+    if (diff === "easy") return "简单模式";
+    if (diff === "medium") return "中等模式";
+    if (diff === "hard") return "困难模式";
+    return "未知模式";
+}
+
+// 更新显示
+const { score, difficulty } = getParams();
+document.getElementById("finalScore").textContent =
+    difficultyToCN(difficulty) + "｜本次得分：" + score;
+
+// 按钮函数
+function retryGame() {
+    window.location.href = `game.html?difficulty=${difficulty}`;
+}
+
+function goHome() {
+    window.location.href = "front.html";
+}
+
+document.addEventListener('keydown', function(event) {
+    switch(event.key) {
+        case 'R': 
+            retryGame();
+            break;
+        case 'B':
+            goHome();
+            break;
+    }
+});
+
+
+</script>
+
+</body>
+</html>
