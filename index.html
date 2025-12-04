@@ -20,25 +20,7 @@
     </div>
 
     <!-- 音乐 -->
-    <audio id="main" src="main.mp3" loop></audio>
-
-    <!-- 开始屏幕覆盖层 -->
-    <div id="start-screen" style="
-        position: fixed;
-        top:0; left:0; width:100%; height:100%;
-        background: rgba(0,0,0,0.85);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10000;
-        cursor: pointer;
-        color: #00f3ff;
-        font-family: 'PixelFont', 'Courier New', monospace;
-        font-size: 2rem;
-        text-align: center;
-    ">
-        点击屏幕开始游戏
-    </div>
+    <audio id="main" src="main.mp3"></audio>
 
     <!-- 主容器 -->
     <div class="container">
@@ -61,16 +43,20 @@
 
 <script>
 // =====================================
-// 点击开始屏幕 → 播放音乐并隐藏覆盖层
+// 音乐循环播放（来自第二个文件）
 // =====================================
-const startScreen = document.getElementById('start-screen');
 const audio = document.getElementById('main');
+const gap = 3000;
 
-startScreen.addEventListener('click', () => {
-    audio.volume = 0.8; // 调整音量
+function playLoop() {
     audio.play();
-    startScreen.style.display = 'none';
-});
+    audio.onended = function() {
+        setTimeout(playLoop, gap);
+    }
+}
+window.onload = function() {
+    playLoop();
+};
 
 // =====================================
 // 点击难度 → 跳转 game.html
@@ -80,7 +66,7 @@ function startGame(difficulty) {
 }
 
 // =====================================
-// 键盘快捷键
+// 键盘快捷键 (来自第一个文件)
 // =====================================
 document.addEventListener('keydown', function(event) {
     switch(event.key) {
@@ -96,5 +82,6 @@ document.addEventListener('keydown', function(event) {
     }
 });
 </script>
+
 </body>
 </html>
