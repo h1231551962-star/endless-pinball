@@ -76,9 +76,11 @@ function goHome() {
 
 document.addEventListener('keydown', function(event) {
     switch(event.key) {
+        case 'r':
         case 'R': 
             retryGame();
             break;
+        case 'b':
         case 'B':
             goHome();
             break;
