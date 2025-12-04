@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无尽弹球</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 背景层 -->
+    <div class="bg"></div>
+    
+    <!-- 装饰元素 -->
+    <div class="decorations">
+        <div class="planet"></div>
+        <div class="spaceship"></div>
+        <div class="ball"></div>
+        <div class="pixel-grid"></div>
+    </div>
+
+    <!-- 音乐 -->
+    <audio id="main" src="main.mp3"></audio>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <div class="title-container">
+            <h1 class="main-title">无尽弹球</h1>
+            <p class="subtitle">ENDLESS PINBALL</p>
+        </div>
+        
+        <div class="menu">
+            <button class="difficulty-btn easy" onclick="startGame('easy')">简单[E]</button>
+            <button class="difficulty-btn medium" onclick="startGame('medium')">中等[M]</button>
+            <button class="difficulty-btn hard" onclick="startGame('hard')">困难[H]</button>
+        </div>
+
+        <div class="footer">
+            <p>抵制不良游戏，拒绝盗版游戏。注意自我保护，预防受骗上当。</p>
+            <p>适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。</p>
+        </div>
+    </div>
+
+<script>
+// =====================================
+// 音乐循环播放（来自第二个文件）
+// =====================================
+const audio = document.getElementById('main');
+const gap = 3000;
+
+function playLoop() {
+    audio.play();
+    audio.onended = function() {
+        setTimeout(playLoop, gap);
+    }
+}
+window.onload = function() {
+    playLoop();
+};
+
+// =====================================
+// 点击难度 → 跳转 game.html
+// =====================================
+function startGame(difficulty) {
+    window.location.href = `game.html?difficulty=${difficulty}`;
+}
+
+// =====================================
+// 键盘快捷键 (来自第一个文件)
+// =====================================
+document.addEventListener('keydown', function(event) {
+    switch(event.key) {
+        case 'e': case 'E':
+            document.querySelector('.easy').click();
+            break;
+        case 'm': case 'M':
+            document.querySelector('.medium').click();
+            break;
+        case 'h': case 'H':
+            document.querySelector('.hard').click();
+            break;
+    }
+});
+</script>
+
+</body>
+</html>
