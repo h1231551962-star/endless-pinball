@@ -1,0 +1,370 @@
+/* ============================
+   全局基础样式
+============================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    color: #e6e6e6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* 背景层（使用本地图片） */
+.bg {
+    background: url('background.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -10;
+}
+
+/* 像素字体 */
+@font-face {
+    font-family: 'PixelFont';
+    src: url('https://fonts.cdnfonts.com/css/pixelify-sans') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* ============================
+   主容器
+============================ */
+.container {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+    padding: 40px 30px;
+    background-color: rgba(10, 14, 41, 0.85);
+    box-shadow:
+        0 0 0 4px #2a3b90,
+        0 0 0 8px #1a2460,
+        0 0 20px rgba(42, 59, 144, 0.7),
+        0 0 40px rgba(0, 243, 255, 0.3);
+    position: relative;
+    z-index: 1;
+    border-radius: 8px;
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    margin: 20px;
+}
+
+
+/* ============================
+   标题
+============================ */
+.title-container {
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.main-title {
+    font-family: 'PixelFont', 'Courier New', monospace;
+    font-size: 5.5rem;
+    margin-bottom: 10px;
+    color: #00f3ff;
+    text-shadow:
+        4px 4px 0 #0066ff,
+        8px 8px 0 rgba(0, 102, 255, 0.5);
+    letter-spacing: 3px;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-family: 'PixelFont', 'Courier New', monospace;
+    font-size: 2rem;
+    color: #ff00ff;
+    text-shadow: 2px 2px 0 #9900cc;
+    letter-spacing: 2px;
+    margin-top: -5px;
+}
+
+
+/* ============================
+   菜单
+============================ */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin: 50px auto;
+    max-width: 500px;
+    position: relative;
+}
+
+
+/* ============================
+   难度按钮
+============================ */
+.difficulty-btn {
+    font-family: 'PixelFont', 'Courier New', monospace;
+    font-size: 1.8rem;
+    padding: 15px 40px;
+    background-color: #1a2460;
+    color: #00f3ff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    border: 3px solid #2a3b90;
+    box-shadow: 0 6px 0 #0f1538;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0 auto;
+    width: 280px;
+}
+
+.difficulty-btn:hover {
+    background-color: #2a3b90;
+    transform: translateY(3px);
+    box-shadow: 0 3px 0 #0f1538;
+    border-color: #00f3ff;
+}
+
+.difficulty-btn:active {
+    transform: translateY(6px);
+    box-shadow: 0 0 0 #0f1538;
+}
+
+/* 各难度颜色 */
+.easy {
+    background-color: rgba(0, 68, 102, 0.9);
+    border-color: #00aaff;
+    box-shadow: 0 6px 0 rgba(0, 34, 51, 0.9);
+    color: #aaffff;
+}
+
+.easy:hover {
+    background-color: rgba(0, 102, 153, 0.9);
+    box-shadow: 0 3px 0 rgba(0, 34, 51, 0.9);
+}
+
+.medium {
+    background-color: rgba(102, 51, 0, 0.9);
+    border-color: #ff9900;
+    box-shadow: 0 6px 0 rgba(51, 26, 0, 0.9);
+    color: #ffcc66;
+}
+
+.medium:hover {
+    background-color: rgba(153, 77, 0, 0.9);
+    box-shadow: 0 3px 0 rgba(51, 26, 0, 0.9);
+}
+
+.hard {
+    background-color: rgba(102, 0, 51, 0.9);
+    border-color: #ff0066;
+    box-shadow: 0 6px 0 rgba(51, 0, 26, 0.9);
+    color: #ff99cc;
+}
+
+.hard:hover {
+    background-color: rgba(153, 0, 77, 0.9);
+    box-shadow: 0 3px 0 rgba(51, 0, 26, 0.9);
+}
+
+
+/* ============================
+   装饰元素动画
+============================ */
+.decorations {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.planet {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #3344aa, #112266);
+    width: 80px;
+    height: 80px;
+    top: 15%;
+    left: 10%;
+    box-shadow:
+        0 0 20px rgba(51, 68, 170, 0.7),
+        inset 10px -10px 20px rgba(0, 0, 0, 0.5);
+    animation: float 8s infinite ease-in-out;
+}
+
+.spaceship {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    bottom: 20%;
+    right: 10%;
+    background-color: #6677cc;
+    clip-path: polygon(0% 50%, 20% 0%, 100% 0%, 100% 100%, 20% 100%);
+    transform: rotate(-10deg);
+    animation: float 6s infinite ease-in-out reverse;
+}
+
+.ball {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ff3366, #990033);
+    top: 60%;
+    left: 15%;
+    box-shadow: 0 0 15px rgba(255, 51, 102, 0.7);
+    animation: float 5s infinite ease-in-out;
+}
+
+.pixel-grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(0, 195, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 195, 255, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+
+/* ============================
+   游戏画布样式（来自 style.css）
+============================ */
+canvas {
+    background-color: #16213e;
+    border: 4px solid #4cc9f0;
+    display: block;
+    margin: 20px auto;
+    box-shadow: 0 0 20px rgba(76, 201, 240, 0.3);
+}
+
+
+/* ============================
+   页面底部（来自 style.css）
+============================ */
+.footer {
+    margin-top: 40px;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    border-top: 2px solid #4cc9f0;
+    padding-top: 15px;
+    width: 100%;
+}
+
+.social {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social a:hover {
+    color: #4cc9f0;
+}
+
+
+/* ============================
+   左上角难度显示框（来自 style.css）
+============================ */
+.mode-box {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 18px;
+    font-family: 'PixelFont', 'Courier New', monospace;
+    font-size: 1.1rem;
+    border: 3px solid #4cc9f0;
+    background-color: #16213e;
+    color: white;
+    box-shadow: 0 0 15px rgba(76, 201, 240, 0.4);
+    z-index: 999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 6px;
+}
+
+.mode-box.easy {
+    background-color: #4ade80;
+    border-color: #86efac;
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
+}
+
+.mode-box.medium {
+    background-color: #f59e0b;
+    border-color: #fbbf24;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+}
+
+.mode-box.hard {
+    background-color: #ef4444;
+    border-color: #f87171;
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.7);
+}
+
+#scoreBox {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 28px;
+    font-family: sans-serif;
+    z-index: 9999;
+}
+
+
+/* ============================
+   响应式设计
+============================ */
+@media (max-width: 768px) {
+    .main-title { font-size: 3.5rem; }
+    .subtitle { font-size: 1.5rem; }
+    .difficulty-btn {
+        font-size: 1.5rem;
+        width: 240px;
+        padding: 12px 30px;
+    }
+    .planet, .spaceship, .ball { transform: scale(0.7); }
+}
+
+@media (max-width: 480px) {
+    .main-title { font-size: 2.8rem; }
+    .subtitle { font-size: 1.2rem; }
+    .difficulty-btn {
+        font-size: 1.3rem;
+        width: 220px;
+        padding: 10px 25px;
+    }
+    .planet, .spaceship, .ball { display: none; }
+    .bg { background-size: cover; }
+}
