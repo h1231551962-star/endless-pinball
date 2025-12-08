@@ -45,13 +45,17 @@ canvas {
   window.onload = function() {
     const canvas = document.getElementById('game');
     const maxWidth = window.innerWidth;
-    const scale = Math.min(1, maxWidth / 500);
+
+    let scale = Math.min(1, maxWidth / 500);
+
+    if (maxWidth < 600) {
+        scale *= 0.9;
+    }
+
     canvas.style.width = 500 * scale + 'px';
     canvas.style.height = 400 * scale + 'px';
 };
 
-/* 完整版：固定 500x400、倒计时、U 形炮台朝向与发射角一致、
-   发射角严格在竖直向下 ±45°（45°~135°）、粒子与后坐力、淡出、边界反弹、底部才结束 */
 const gmain = document.getElementById('gmain');
 const click = document.getElementById('click');
 const cdown = document.getElementById('cdown');
